@@ -1,3 +1,4 @@
+/*
 int Solution::canCompleteCircuit(const vector<int> &A, const vector<int> &B) {
     if ((A.size() == 0) || (B.size() == 0))
     {
@@ -35,4 +36,28 @@ int Solution::canCompleteCircuit(const vector<int> &A, const vector<int> &B) {
         iStart = -1;
     }
     return iStart;
+}
+*/
+
+int Solution::canCompleteCircuit(const vector<int> &A, const vector<int> &B) {
+     int tank = 0, start = 0, sumGas = 0, sumCost = 0;
+    if ((A.size() == 0) || (B.size() == 0))
+    {
+        return -1;
+    }
+    for (auto i = 0; i<A.size(); ++i)
+    {
+        sumGas += A[i];
+        sumCost += B[i];
+        tank += (A[i] - B[i]);
+        if (tank < 0)
+        {
+            start = i + 1;
+            tank = 0;
+        }
+    }
+    
+    if (sumGas < sumCost)
+        return -1;
+    return start;
 }

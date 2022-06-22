@@ -40,24 +40,24 @@ int Solution::canCompleteCircuit(const vector<int> &A, const vector<int> &B) {
 */
 
 int Solution::canCompleteCircuit(const vector<int> &A, const vector<int> &B) {
-     int tank = 0, start = 0, sumGas = 0, sumCost = 0;
+    int iRemFuel = 0, iStart = 0, iSumGas = 0, iSumCost = 0;
     if ((A.size() == 0) || (B.size() == 0))
     {
         return -1;
     }
     for (auto i = 0; i<A.size(); ++i)
     {
-        sumGas += A[i];
-        sumCost += B[i];
-        tank += (A[i] - B[i]);
-        if (tank < 0)
+        iSumGas += A[i];
+        iSumCost += B[i];
+        iRemFuel += (A[i] - B[i]);
+        if (iRemFuel < 0)
         {
-            start = i + 1;
-            tank = 0;
+            iStart = i + 1;
+            iRemFuel = 0;
         }
     }
     
-    if (sumGas < sumCost)
+    if (iSumGas < iSumCost)
         return -1;
-    return start;
+    return iStart;
 }
